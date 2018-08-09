@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
+import { withRouter,Redirect } from "react-router-dom";
 import { Segment,Item, Header ,Button,Grid,Form,Radio,Container} from "semantic-ui-react";
+import { handleAddQuestionAnswer} from '../actions/questions'
 class Question extends Component{
-    state = {}
-    handleChange = (e, { value }) => this.setState({ value })
+    state = {
+        answer:'',
+        toViewpoll:false
+    }
+    handleChange = (e, { value }) => this.setState({answer:value })
     handleSubmit=(e)=>{
-        //todo
+        e.preventDefault()
+        const { answer } =this.state
+        const { dispatch,question} = this.props
+        const qid=question.id
+        
+        console.log(qid,"questionid")
+        console.log(answer,"option")
+        //dispatching an action
+        dispatch(handleAddQuestionAnswer({qid,answer}))
+        this.setState({
+            toViewpoll:true
+        })
+        //this.props.history.push('/viewpoll');
     }
     render(){
-        console.log(this.props)
         const {question,user} = this.props
         const { name,avatarURL}=user
         const optionOne=question.optionOne.text
         const optionTwo=question.optionTwo.text
+         if(this.state.toViewpoll===true){
+            return <Redirect to='/viewpoll' />
+        } 
         return(
             <div>
                 <Container style={{ marginTop: '3em' }}>
@@ -33,18 +52,18 @@ class Question extends Component{
                                        <Form.Field>
                                         <Radio
                                             label= {optionOne}
-                                            name='radioGroup'
-                                            value={optionOne}
-                                            checked={this.state.value === `${optionOne}`}
+                                            name='optionOne'
+                                            value='optionOne'
+                                            checked={this.state.answer === 'optionOne'}
                                             onChange={this.handleChange}
                                         />
                                         </Form.Field>
                                         <Form.Field>
                                         <Radio
                                             label= {optionTwo}
-                                            name='radioGroup'
-                                            value={optionTwo}
-                                            checked={this.state.value === `${optionTwo}`}
+                                            name='optionTwo'
+                                            value='optionTwo'
+                                            checked={this.state.answer === 'optionTwo'}
                                             onChange={this.handleChange}
                                         />
                                         </Form.Field>
@@ -73,4 +92,4 @@ function mapStateToProps({questions,users},props){
     }
 
 }
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))
