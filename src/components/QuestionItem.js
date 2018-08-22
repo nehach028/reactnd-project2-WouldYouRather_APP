@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom'
 import { Segment,Item, Header ,Button,Grid} from "semantic-ui-react";
 
@@ -11,7 +12,7 @@ class QuestionItem extends React.Component{
         if(unansweredPoll){
             this.props.history.push(`/question/${question_id}`);
         }else {
-            this.props.history.push('/viewpoll');
+            this.props.history.push(`/viewpoll/${question_id}`);
         }
     }
     render(){
@@ -49,6 +50,19 @@ class QuestionItem extends React.Component{
     }
     
 }
+
+//Required PropTypes:
+QuestionItem.propTypes = {
+    question_id : PropTypes.string.isRequired,
+	unansweredPoll : PropTypes.bool.isRequired,
+    question : PropTypes.object,
+    user : PropTypes.object,
+}
+QuestionItem.defaultProps  = {
+    user: null,
+    question : null,
+}
+
 function mapStateToProps({questions,users},{question_id,unansweredPoll}){
     const question=questions[question_id]
     const user=users[question.author]
