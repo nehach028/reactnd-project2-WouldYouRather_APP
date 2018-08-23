@@ -16,6 +16,47 @@ To get it installed and launched:
 * start the server with `npm start`
 * After starting the server hit the URL:http://localhost:3000/
 
+## App Functionality & Its Flows
+
+Following are the various flows of app:
+
+### Login Flow
+
+The App user would have a way of logging in as an existing user.The Login Box appears at the root ('/') of the application that lets the user select a name from the list of existing users. app works correctly regardless of which user is selected. Once the user logs in, the home page will show.Also Name & Avatar of logged in user display on the page. If someone tries to navigate anywhere by entering the address in the address bar, the user is asked to sign in and then the requested page will be shown. The application allows the user to log out and log back in.
+
+![Loginflow](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/SignIn.png?raw=true)
+
+### Home Page
+
+Once the user logs in, the home page will be show.The user would be able to toggle between his/her answered and unanswered polls on the home page.The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom). The unanswered questions would be shown by default, and the name & avatar of the logged in user would be visible on the page.
+
+![Image of Home Page](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/Home.png?raw=true)
+
+### ViewPoll
+
+When a view poll button is clicked on the "unanswered" category of home page, User will be redirect to view poll page.The details of each poll will be available at questions/:question_id.
+
+![Image of ViewPoll Page](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/ViewPoll.png?raw=true)
+
+When view poll button clicked on answered polls, user will be redirect to Poll detail page.On voting in a poll, all of the information of an answered poll will be displayed. The user’s Vote will be visible on the poll details page. Users can only vote once per poll also they are not allowed to change their answer after they’ve voted. When the user comes back to the home page, the polling question should appear in the “Answered” column.
+
+![Image of ViewPollResult Page](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/ViewPollResult.png?raw=true)
+
+Note:The application will show a 404 page if the user is trying to access a poll that does not exist.
+
+### New Question
+
+The form for posting new polling questions will be available at the '/add' route.Also Form have two oprtion to create new Question/Poll. Upon submitting the form, a new poll will be created, the user will be redirect to the home page, and the new polling question will appear in the Unanswered category of home page.
+
+![Image of New Question Page](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/NewQuestion.png)
+
+### LeaderBoard
+
+The leaderboard will be available at the '/leaderboard' route. Each entry on the leaderboard will display the no of questions the user asked,& the no of questions the user answered.also Users will be displayed in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered.
+
+![Image of LeaderBoard page](https://github.com/nehach028/reactnd-project2-WouldYouRather_APP/blob/master/public/LeaderBoard.png?raw=true)
+
+
 ## Backend Server
 
 A backend server & javascript API is provided.The provided files are :
