@@ -10,7 +10,7 @@ class QuestionItem extends React.Component{
         const {unansweredPoll,question_id}=this.props
         
         if(unansweredPoll){
-            this.props.history.push(`/question/${question_id}`);
+            this.props.history.push(`/questions/${question_id}`);
         }else {
             this.props.history.push(`/viewpoll/${question_id}`);
         }
