@@ -16,19 +16,26 @@ class Home extends Component{
         e.preventDefault()
         this.setState({showUnanswered:false})
     }
-    render(){
+    //To filter out unanswered questions
+    getUnansweredQ = ()=>{
         const { questionIds, answers } = this.props
-        const { showUnanswered } = this.state
-        
-        //Filter unanswered question of authed user
-        const unanweredQ=questionIds.filter((ele)=>
+        return questionIds.filter((ele)=>
                             {
                                 return Object.keys(answers).indexOf(ele)<0 
                             },Object.keys(answers))
-        const answeredQ=questionIds.filter((id)=>{
-                            return answers.hasOwnProperty(id)
-                        })    
-            
+    }
+    //To filter out answered questions
+    getAnsweredQ = ()=>{
+        const { questionIds, answers } = this.props
+        return questionIds.filter((id)=>{
+            return answers.hasOwnProperty(id)
+        })
+    }
+    render(){
+        const { showUnanswered } = this.state
+        //get answered and unaswered questions
+        const unanweredQ = this.getUnansweredQ()
+        const answeredQ =  this.getAnsweredQ()
         return(
             <Container style={{ marginTop: '3em' ,width:600}}>
                 <Grid columns='equal' >
