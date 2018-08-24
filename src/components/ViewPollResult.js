@@ -7,15 +7,15 @@ import { Redirect } from "react-router-dom";
 const ViewPollResult = (props) => {
         const { question, user, yourvote} = props
         //To display 404 page ,If poll not found
-        if(question==='undefined'|| user===null){
+        if(question==='undefined'|| !user ){
             return <Redirect exact to='/error'/>
         }
         const { name,avatarURL} = user
         let TotalVote = 0
         let percentOne=0
         let percentTwo=0
-        let voteCountOne=question.optionOne.votes.length
-        let  voteCountTwo=question.optionTwo.votes.length
+        const voteCountOne=question.optionOne.votes.length
+        const  voteCountTwo=question.optionTwo.votes.length
         // calculating the percentage
         TotalVote=voteCountOne + voteCountTwo
         percentOne=Math.round((voteCountOne*100) / (TotalVote) * 100) / 100
