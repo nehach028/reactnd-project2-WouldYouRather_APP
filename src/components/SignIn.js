@@ -28,7 +28,7 @@ class SignIn extends Component{
     }
     render(){
       const { users,authedUser }=this.props
-      const { loggedIn }=this.state
+      const { loggedIn, id }=this.state
       const userOptions=users.map((user)=>({
         text: user.name,
         value:user.id,
@@ -51,7 +51,7 @@ class SignIn extends Component{
                   <Segment attached='bottom'>
                     <Dropdown placeholder='Select User' fluid selection options={userOptions} onChange={this.handleChange} />
                     <Divider hidden />
-                    <Button color='teal' fluid size='large'>
+                    <Button color='teal' fluid size='large' disabled={id===''}>
                           Sign In
                     </Button>
                   </Segment>
